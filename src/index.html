@@ -4,20 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>DZ 11</title>
 
     <link rel="stylesheet" href="./sass/index.scss" />
     <script src="./index.js" type="module" defer></script>
+     <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
+    <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet"></link>
   </head>
   <body>
     <form class="search-form" id="search-form">
       <input
+      class="text-input"
         type="text"
         name="searchQuery"
         autocomplete="off"
         placeholder="Search images..."
       />
-      <button type="submit">Search</button>
+      <button class="search-button" type="submit">Search</button>
+      <span class="total total-span">-</span>
+  <div class="gallery">images</div>
+<button  class="js-load load-more">Load more</button>
     </form>
   </body>
 </html>

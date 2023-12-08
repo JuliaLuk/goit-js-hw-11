@@ -1,36 +1,84 @@
-// import Notiflix from 'notiflix';
+import Notiflix from 'notiflix';
+import { fetchImages } from './sass/js/fetch';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import axios from 'axios';
 
-const URL = 'https://pixabay.com/api/';
-const API_KEY = '41150713 - bfede5582ab5c0a4976e7b783';
+const form = document.getElementById('search-form');
+const input = form.elements.searchQuery;
 
-fetch('https://pixabay.com/api/?key=41150713-bfede5582ab5c0a4976e7b783')
-  .then(response => response.json())
-  .then(console.log());
+const gallery = document.querySelector('.gallery');
+const loadMore = document.querySelector('.js-load');
+const total = document.querySelector('.total');
 
-// axios
-//   .get('https://pixabay.com/api/?key=41150713-bfede5582ab5c0a4976e7b783')
-//   .then(function (response) {
-//     // handle success
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     // handle error
-//     console.log(error);
-//   })
-//   .finally(function () {
-//     // always executed
-//   });
+let currentPage = 1;
+let lightbox = new SimpleLightbox('.photo-card a', {
+  captions: true,
+  captionDelay: 250,
+  captionSelector: 'img',
+  captionType: 'attr',
+  captionsData: 'alt',
+});
 
-//   skroll
+loadMore.style.display = 'none';
 
-// const { height: cardHeight } = document
-//   .querySelector('.gallery')
-//   .firstElementChild.getBoundingClientRect();
+function createCard(images) {
+  const markup = images
+    .map(
+      image => `<div class="photo-card">
+  <a href="${image.largeImageURL}" class="lightbox">
 
-// window.scrollBy({
-//   top: cardHeight * 2,
-//   behavior: 'smooth',
-// });
+  <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" width = "350px"/>
+  <div class="info">
+    <p class="info-item">
+      <b>Likes</b>${image.likes}
+    </p>
+    <p class="info-item">
+      <b>Views</b>${image.views}
+    </p>
+    <p class="info-item">
+      <b>Comments</b>${image.comments}
+    </p>
+    <p class="info-item">
+      <b>Downloads</b>${image.downloads}
+    </p>
+  </div></div>`
+    )
+    .join('');
+  gallery.insertAdjacentHTML('beforeend', markup);
+  lightbox.refresh();
+
+  if (images.length > 40 || images.length < 40) {
+    loadMore.style.display = 'none';
+  } else {
+    loadMore.style.display = 'block';
+  }
+}
+
+loadMore.addEventListener('click', onLoad);
+
+function onLoad() {
+  return (currentPage += 1);
+}
+
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  gallery.innerHTML = '';
+
+  try {
+    if (input.value.length === 0) {
+      Notiflix.Notify.failure('You must enter a request.');
+      return;
+    }
+    const result = await fetchImages(input.value, currentPage);
+
+    total.textContent = `Hooray! We found totalHits images - ${result.total} pcs`;
+    createCard(result.images);
+
+    input.focus();
+  } catch (error) {
+    Notiflix.Notify.failure(
+      'An error occurred while fetching images. Please try again.'
+    );
+  }
+});
