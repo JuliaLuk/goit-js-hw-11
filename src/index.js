@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import { fetchImages } from './sass/js/fetch';
+import { fetchImages } from '/src/js/pixabay';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import axios from 'axios';
