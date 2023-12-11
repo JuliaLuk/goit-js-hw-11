@@ -28,19 +28,19 @@ function createCard(images) {
       image => `<div class="photo-card">
   <a href="${image.largeImageURL}" class="lightbox">
 
-  <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" width = "350px"/>
+  <img class="gallery_link" src="${image.webformatURL}" alt="${image.tags}" loading="lazy" width = "350px"/>
   <div class="info">
     <p class="info-item">
-      <b>Likes</b>${image.likes}
+      <b class="text">Likes: ${image.likes}</b>
     </p>
     <p class="info-item">
-      <b>Views</b>${image.views}
+      <b class="text">Views: ${image.views}</b>
     </p>
     <p class="info-item">
-      <b>Comments</b>${image.comments}
+      <b class="text">Comments: ${image.comments}</b>
     </p>
     <p class="info-item">
-      <b>Downloads</b>${image.downloads}
+      <b class="text">Downloads: ${image.downloads}</b>
     </p>
   </div></div>`
     )
@@ -72,7 +72,7 @@ form.addEventListener('submit', async event => {
     }
     const result = await fetchImages(input.value, currentPage);
 
-    total.textContent = `Hooray! We found totalHits images - ${result.total} pcs`;
+    total.textContent = `Hooray! We found total Hits images - ${result.total} pcs`;
     createCard(result.images);
 
     input.focus();
