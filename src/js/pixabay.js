@@ -31,6 +31,11 @@ export async function fetchImages(query, page = 1) {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
+      if (!input.target || !input.trim()) {
+        console.log(input);
+        Notiflix.Notify.failure('string is empty or only contains spaces');
+      }
+      total.classList.add('is-hidden');
       return;
     }
 
@@ -41,3 +46,36 @@ export async function fetchImages(query, page = 1) {
     throw new Error(`HTTP error! status: ${error.response.status}`);
   }
 }
+
+// export function createCard(images) {
+//   const markup = images
+//     .map(
+//       image => `<div class="photo-card">
+//   <a href="${image.largeImageURL}" class="lightbox">
+
+//   <img class="gallery_link" src="${image.webformatURL}" alt="${image.tags}" loading="lazy" width = "350px"/>
+//   <div class="info">
+//     <p class="info-item">
+//       <b class="text">Likes: ${image.likes}</b>
+//     </p>
+//     <p class="info-item">
+//       <b class="text">Views: ${image.views}</b>
+//     </p>
+//     <p class="info-item">
+//       <b class="text">Comments: ${image.comments}</b>
+//     </p>
+//     <p class="info-item">
+//       <b class="text">Downloads: ${image.downloads}</b>
+//     </p>
+//   </div></div>`
+//     )
+//     .join('');
+//   gallery.insertAdjacentHTML('beforeend', markup);
+//   lightbox.refresh();
+
+//   if (images.length > 40 || images.length < 40) {
+//     loadMore.style.display = 'none';
+//   } else {
+//     loadMore.style.display = 'block';
+//   }
+// }

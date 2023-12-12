@@ -25,7 +25,7 @@ loadMore.style.display = 'none';
 function createCard(images) {
   const markup = images
     .map(
-      image => `<div class="photo-card">
+      image => `<div class="photo-card" >
   <a href="${image.largeImageURL}" class="lightbox">
 
   <img class="gallery_link" src="${image.webformatURL}" alt="${image.tags}" loading="lazy" width = "350px"/>
@@ -68,6 +68,7 @@ form.addEventListener('submit', async event => {
   try {
     if (input.value.length === 0) {
       Notiflix.Notify.failure('You must enter a request.');
+      loadMore.classList.add('is-hidden');
       return;
     }
     const result = await fetchImages(input.value, currentPage);
