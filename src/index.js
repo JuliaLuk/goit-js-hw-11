@@ -2,7 +2,6 @@ import Notiflix from 'notiflix';
 import { fetchImages } from '/src/js/pixabay';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import axios from 'axios';
 
 const form = document.getElementById('search-form');
 const input = form.elements.searchQuery;
@@ -58,7 +57,11 @@ function createCard(images) {
 loadMore.addEventListener('click', onLoad);
 
 function onLoad() {
-  return (currentPage += 1);
+  currentPage += 1;
+  fetchImages(currentPage).then(data => {
+    gallery.insertAdjacentHTML('beforeend', markup);
+  });
+  // return (currentPage += 1);
 }
 
 form.addEventListener('submit', async event => {
@@ -72,9 +75,9 @@ form.addEventListener('submit', async event => {
       total.classList.add('is-hidden');
       return;
     }
-    total.classList.remove('is-hidden');
+    // total.classList.remove('is-hidden');
     loadMore.classList.remove('is-hidden');
-    loadMore.disabled = false;
+    // loadMore.disabled = false;
 
     if (!input.value.trim()) {
       Notiflix.Notify.failure('string is empty or only contains spaces');
