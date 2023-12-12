@@ -69,13 +69,14 @@ form.addEventListener('submit', async event => {
     if (input.value.length === 0) {
       Notiflix.Notify.failure('You must enter a request.');
       loadMore.classList.add('is-hidden');
+      total.classList.add('is-hidden');
       return;
     }
 
-    if (!input.target || !input.trim()) {
-      Notiflix.Notify.failure('string is empty or only contains spaces');
-      return;
-    }
+    // if (!input.target || !input.trim()) {
+    //   Notiflix.Notify.failure('string is empty or only contains spaces');
+    //   return;
+    // }
     const result = await fetchImages(input.value, currentPage);
 
     total.textContent = `Hooray! We found total Hits images - ${result.total} pcs`;
