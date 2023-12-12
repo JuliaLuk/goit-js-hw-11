@@ -73,6 +73,8 @@ form.addEventListener('submit', async event => {
       return;
     }
     total.classList.remove('is-hidden');
+    loadMore.classList.remove('is-hidden');
+    loadMore.disabled = false;
 
     // if (!input.target || !input.trim()) {
     //   Notiflix.Notify.failure('string is empty or only contains spaces');
