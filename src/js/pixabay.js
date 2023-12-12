@@ -31,10 +31,7 @@ export async function fetchImages(query, page = 1) {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
-      if (!input.target || !input.trim()) {
-        console.log(input);
-        Notiflix.Notify.failure('string is empty or only contains spaces');
-      }
+
       total.classList.add('is-hidden');
       return;
     }
