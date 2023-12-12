@@ -76,10 +76,11 @@ form.addEventListener('submit', async event => {
     loadMore.classList.remove('is-hidden');
     loadMore.disabled = false;
 
-    // if (input.value.length.trim()) {
-    //   Notiflix.Notify.failure('string is empty or only contains spaces');
-    //   return;
-    // }
+    if (!input.value.trim()) {
+      Notiflix.Notify.failure('string is empty or only contains spaces');
+      loadMore.classList.add('is-hidden');
+      return;
+    }
     const result = await fetchImages(input.value, currentPage);
 
     Notiflix.Notify.success(
