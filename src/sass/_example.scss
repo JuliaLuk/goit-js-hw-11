@@ -22,6 +22,7 @@
   padding: 24px;
   position: sticky;
   top: 0;
+  background-color: rgb(184, 205, 242);
   box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3);
 }
@@ -68,4 +69,10 @@ img {
 a {
   text-decoration: none;
   color: currentColor;
+}
+.js-load {
+  margin: 100px auto;
+  width: 180px;
+  height: 40px;
+  font-size: 20px;
 }
