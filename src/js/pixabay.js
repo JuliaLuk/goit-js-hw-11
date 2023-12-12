@@ -4,6 +4,29 @@ import axios from 'axios';
 
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '41150713-bfede5582ab5c0a4976e7b783';
+// -----
+let page = 1;
+
+serviceImage().then(data => {
+  // console.log(data);
+});
+function serviceImage(page = 1) {
+  const BASE_URL = 'https://pixabay.com/api/';
+  const API_KEY = '41150713-bfede5582ab5c0a4976e7b783';
+  const queryParams = new URLSearchParams({
+    api_key: API_KEY,
+    page: page,
+  });
+
+  return fetch(`${BASE_URL}?${queryParams}`).then(resp => {
+    if (!resp.ok) {
+      throw new Error(resp.statusText);
+    }
+    return resp.json();
+  });
+}
+
+// -------
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -27,7 +50,7 @@ export async function fetchImages(query, page = 1) {
 
     const json = response.data;
 
-    if (json.hits.length === 0) {
+    if (json.hits.length === '') {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );

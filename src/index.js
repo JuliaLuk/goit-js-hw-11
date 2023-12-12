@@ -76,13 +76,15 @@ form.addEventListener('submit', async event => {
     loadMore.classList.remove('is-hidden');
     loadMore.disabled = false;
 
-    // if (!input.target || !input.trim()) {
+    // if (input.value.length.trim()) {
     //   Notiflix.Notify.failure('string is empty or only contains spaces');
     //   return;
     // }
     const result = await fetchImages(input.value, currentPage);
 
-    total.textContent = `Hooray! We found total Hits images - ${result.total} pcs`;
+    Notiflix.Notify.success(
+      `Hooray! We found total Hits images - ${result.total} pcs`
+    );
     createCard(result.images);
 
     input.focus();
