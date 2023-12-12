@@ -60,6 +60,9 @@ function onLoad() {
   currentPage += 1;
   fetchImages(currentPage).then(data => {
     gallery.insertAdjacentHTML('beforeend', markup);
+    if (images.length >= total.length) {
+      loadMore.style.display = 'none';
+    }
   });
   // return (currentPage += 1);
 }
