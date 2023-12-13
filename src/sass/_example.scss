@@ -38,7 +38,8 @@ body {
   margin: 20px auto;
 }
 .photo-card {
-  margin: auto;
+  margin: 10px;
+
   padding: 10px;
   background-color: rgb(196, 214, 247);
   box-shadow: 5px 5px 7px rgba(249, 248, 248, 0.3);
@@ -47,7 +48,8 @@ body {
 }
 
 .info {
-  margin-top: 20px;
+  margin-top: auto;
+  margin-bottom: 20px;
   padding: auto 20px;
 }
 
@@ -56,15 +58,16 @@ body {
 //   flex-direction: column;
 // }
 
-img {
+.gallery img {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 200px;
+  margin-bottom: auto;
 }
 
-.gallery_link {
-  height: 100%;
-}
+// .gallery_link {
+//   max-width: 100%;
+// }
 
 .text {
   font-size: 14px;
