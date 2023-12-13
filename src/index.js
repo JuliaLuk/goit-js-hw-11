@@ -55,16 +55,14 @@ function createCard(images) {
 }
 
 loadMore.addEventListener('click', onLoad);
-
 function onLoad() {
   currentPage += 1;
-  fetchImages(currentPage).then(data => {
-    gallery.insertAdjacentHTML('beforeend', markup);
-    if (images.length >= total.length) {
+  fetchImages(input.value, currentPage).then(data => {
+    createCard(data.images);
+    if (data.images.length < 40) {
       loadMore.style.display = 'none';
     }
   });
-  // return (currentPage += 1);
 }
 
 form.addEventListener('submit', async event => {
