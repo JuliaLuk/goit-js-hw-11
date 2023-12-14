@@ -47,28 +47,45 @@ function createCard(images) {
   gallery.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
 
-  if (images.length > 40 || images.length < 40) {
+  if (images.length < 40) {
     loadMore.style.display = 'none';
   } else {
     loadMore.style.display = 'block';
   }
 }
-
+// ------
 loadMore.addEventListener('click', onLoad);
 function onLoad() {
   currentPage += 1;
+  console.log(currentPage);
+
   fetchImages(input.value, currentPage).then(data => {
     createCard(data.images);
     if (data.images.length < 40) {
       loadMore.style.display = 'none';
+      Notiflix.Notify.failure(
+        'Wea re sorry, but you have reached the end of search results.'
+      );
+    }
+
+    //  const lastPage = Math.ceil(Number(total) / 40);
+    // console.log(lastPage);
+
+    if (currentPage >= 13) {
+      loadMore.style.display = 'none';
+      Notiflix.Notify.failure(
+        'Wea re sorry, but you have reached the end of search results.'
+      );
     }
   });
 }
+// ------
 
+// ------
 form.addEventListener('submit', async event => {
   event.preventDefault();
   gallery.innerHTML = '';
-
+  currentPage = 1;
   try {
     if (input.value.length === 0) {
       Notiflix.Notify.failure('You must enter a request.');
@@ -76,9 +93,8 @@ form.addEventListener('submit', async event => {
       total.classList.add('is-hidden');
       return;
     }
-    // total.classList.remove('is-hidden');
+
     loadMore.classList.remove('is-hidden');
-    // loadMore.disabled = false;
 
     if (!input.value.trim()) {
       Notiflix.Notify.failure('string is empty or only contains spaces');
