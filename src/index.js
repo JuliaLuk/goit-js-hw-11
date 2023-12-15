@@ -67,11 +67,11 @@ function onLoad() {
         'Wea re sorry, but you have reached the end of search results.'
       );
     }
-    // let totalH = json.totalHits;
-    // const lastPage = Math.ceil(totalH / 40);
-    // console.log(lastPage);
+    let totalH = data.total;
+    const lastPage = Math.ceil(totalH / 40);
+    console.log(data);
 
-    if (currentPage >= 13) {
+    if (currentPage >= lastPage) {
       loadMore.style.display = 'none';
       Notiflix.Notify.failure(
         'Wea re sorry, but you have reached the end of search results.'

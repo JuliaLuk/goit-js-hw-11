@@ -46,28 +46,3 @@ export async function fetchImages(query, page = 1) {
     throw new Error(`HTTP error! status: ${error.response.status}`);
   }
 }
-
-// export function onLoad() {
-//   currentPage += 1;
-//   console.log(currentPage);
-
-//   fetchImages(input.value, currentPage).then(data => {
-//     createCard(data.images);
-//     if (data.images.length < 40) {
-//       loadMore.style.display = 'none';
-//       Notiflix.Notify.failure(
-//         'Wea re sorry, but you have reached the end of search results.'
-//       );
-//     }
-
-//     const lastPage = Math.ceil(total / 40);
-//     console.log(lastPage);
-
-//     if (currentPage >= lastPage) {
-//       loadMore.style.display = 'none';
-//       Notiflix.Notify.failure(
-//         'Wea re sorry, but you have reached the end of search results.'
-//       );
-//     }
-//   });
-// }
