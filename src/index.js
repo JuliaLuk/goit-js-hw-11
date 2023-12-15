@@ -84,7 +84,7 @@ function onLoad() {
 
 // loadMore.addEventListener('click', onLoad);
 // currentPage += 1;
-// console.log(currentPage);
+
 // async function onLoad() {
 //   try {
 //     const response = await fetchImages(input.value, currentPage);
@@ -92,15 +92,9 @@ function onLoad() {
 //     const proces = await createCard(response);
 //     console.log(proces);
 
-//     if (data.images.length < 40) {
-//       loadMore.style.display = 'none';
-//       Notiflix.Notify.failure(
-//         'Wea re sorry, but you have reached the end of search results.'
-//       );
-//     }
 //     // let totalH = json.totalHits;
 //     // const lastPage = Math.ceil(totalH / 40);
-//     // console.log(lastPage);
+//
 
 //     if (currentPage >= 13) {
 //       loadMore.style.display = 'none';
