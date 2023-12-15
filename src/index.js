@@ -61,15 +61,15 @@ function onLoad() {
 
   fetchImages(input.value, currentPage).then(data => {
     createCard(data.images);
-    if (data.images.length < 40) {
-      loadMore.style.display = 'none';
-      Notiflix.Notify.failure(
-        'Wea re sorry, but you have reached the end of search results.'
-      );
-    }
+    // if (data.images.length < 40) {
+    //   loadMore.style.display = 'none';
+    //   Notiflix.Notify.failure(
+    //     'Wea re sorry, but you have reached the end of search results.'
+    //   );
+    // }
     let totalH = data.total;
     const lastPage = Math.ceil(totalH / 40);
-    console.log(data);
+    // console.log(data);
 
     if (currentPage >= lastPage) {
       loadMore.style.display = 'none';

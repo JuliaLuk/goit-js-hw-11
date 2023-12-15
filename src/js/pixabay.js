@@ -37,9 +37,9 @@ export async function fetchImages(query, page = 1) {
     }
 
     let images = json.hits;
-    console.log(images.length);
+    // console.log(images.length);
     let total = json.totalHits;
-    console.log(total);
+    // console.log(total);
 
     return { images, total };
   } catch (error) {
