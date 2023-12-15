@@ -111,9 +111,12 @@ function onLoad() {
 //   } catch (error) {
 //     console.log(error);
 //   }
+// lightbox.refresh();
 // }
 
 // ------
+
+// ---------
 form.addEventListener('submit', async event => {
   event.preventDefault();
   gallery.innerHTML = '';
