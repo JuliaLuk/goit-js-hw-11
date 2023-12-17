@@ -81,35 +81,23 @@ function onLoad() {
 }
 // ------
 // спроба переписати на async await
-
-// loadMore.addEventListener('click', onLoad);
-// currentPage += 1;
-
 // async function onLoad() {
-//   try {
-//     const response = await fetchImages(input.value, currentPage);
+//   currentPage += 1;
+//   console.log(currentPage);
 
-//     const proces = await createCard(response);
-//     console.log(proces);
+//   const result = await fetchImages(input.value, currentPage);
+//   createCard(result.images);
 
-//     // let totalH = json.totalHits;
-//     // const lastPage = Math.ceil(totalH / 40);
-//
+//   let totalH = result.total;
+//   const lastPage = Math.ceil(totalH / 40);
 
-//     if (currentPage >= 13) {
-//       loadMore.style.display = 'none';
-//       Notiflix.Notify.failure(
-//         'Wea re sorry, but you have reached the end of search results.'
-//       );
-//     }
-//   } catch (error) {
-//     console.log(error);
+//   if (currentPage >= lastPage) {
+//     loadMore.style.display = 'none';
+//     Notiflix.Notify.failure(
+//       'Wea re sorry, but you have reached the end of search results.'
+//     );
 //   }
-// lightbox.refresh();
 // }
-
-// ------
-
 // ---------
 form.addEventListener('submit', async event => {
   event.preventDefault();
